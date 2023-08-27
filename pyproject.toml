@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sampleproject"
+dynamic = ['version', 'dependencies', 'optional-dependencies']
+description = "A sample Python project"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE.txt" }
+keywords = []
+authors = [{ name = "Coconut Developer", email = "Coconut@example.com" }]
+maintainers = [{ name = "Orange Maintainer", email = "Orange@example.com" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+[project.urls]
+"Homepage" = "https://github.com"
+"Bug Reports" = "https://github.com"
+
+[project.scripts]
+sample = "sampleproject.main:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["sampleproject*"]
+exclude = []
+namespaces = false
+
+[tool.setuptools.dynamic]
+version = { file = "src/sampleproject/VERSION" }
+# readme = { file = ["README.rst", "USAGE.rst"] }
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.dynamic.optional-dependencies]
+dev = { file = "requirements-dev.txt" }
+test = { file = "requirements-test.txt" }
+
+[tool.setuptools.package-data]
+sampleproject = ["VERSION"]
+
+[tool.black]
+line-length = 120
+
+[tool.flake8]
+max-line-length = 120
